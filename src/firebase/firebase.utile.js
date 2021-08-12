@@ -17,7 +17,39 @@ const config = {
   export const createUserProfileDocument = async (userAuth, additionalData) => {
     if(!userAuth) return;
 
+    /**
+     * 
+     * firebase's DB Called "Firestore"
+     * 
+     * FIRESTORE DB is called noSql DB, means it store data in form of JSON object which are called collections
+     * 
+     * In FIRESTORE: we create Collections which has Document
+     * 
+     * DOC / DOCUMENT are in form of Random Generated ID's  WHICH contain values or another collection. 
+     * 
+     * 
+     * in order to get everything from collection we use Function
+     * .collection('pass collection name, e.g, users')
+     * 
+     * in order to get document / doc we use function 
+     * .doc('pass doc id, e.g, users/2340kjlfsdf0sdf8sdfh')
+     * 
+     * 
+     * 
+     * 
+     * *****************************************************************************
+     * 
+     * 
+     * User Refrench / userRefrence is used to perform CRUD OPERATIONS(Create, Read, Update, Delete)
+     * 
+     * snaShot is to get data from firestore using UserRefrence. 
+     * 
+     * 
+     */
+
+    // selecting user from given collection and inside with document uid
     const userRef = firestore.doc(`users/${userAuth.uid}`);
+    // getting user information from firestore using Document's uid
     const snapShot = await userRef.get();
     // console.log(userAuth);
     if(!snapShot.exists){
