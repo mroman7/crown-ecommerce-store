@@ -35,3 +35,17 @@ export const selectCartItemsCount = createSelector(
         (accumulatorQuantity, cartItem) => accumulatorQuantity + cartItem.quantity, 0)
 );
 
+
+export const selectCartTotal = createSelector(
+    [selectCartItems],
+    cartItem => cartItem.reduce(
+        (accumulatorQuantity, cartItem) => accumulatorQuantity + cartItem.quantity * cartItem.price, 0)
+)
+
+
+
+// for hidden dropdown 
+export const selectCartHidden = createSelector(
+    [selectCart],
+    cart => cart.hidden
+)
