@@ -1,4 +1,6 @@
+
 import { createStore, applyMiddleware } from "redux";
+import { persistStore } from 'redux-persist';
 import logger from "redux-logger";
 
 import rootReducer from "./root-reducer";
@@ -7,4 +9,11 @@ import rootReducer from "./root-reducer";
 const middleware = [logger];
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));
-export default store;
+
+/**
+ * Redux Persist Library is used to store our Redux State into a LocalStorage so that we cannot loss our state data on refreshing page, closing window. 
+ */
+
+const persistor = persistStore(store);
+
+export { store, persistor };
