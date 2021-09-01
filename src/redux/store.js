@@ -6,7 +6,11 @@ import logger from "redux-logger";
 import rootReducer from "./root-reducer";
 
 // to log / see all actions || find what is happening when action dispatch we use
-const middleware = [logger];
+const middleware = [];
+
+if(process.env.NODE_ENV === 'development'){
+    middleware.push(logger);
+}
 
 const store = createStore(rootReducer, applyMiddleware(...middleware));
 
